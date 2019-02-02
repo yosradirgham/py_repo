@@ -54,12 +54,15 @@ def get_definition():
         print(data[word])
     else:
         lst = findSimilarWord(word, data)
-        y = getMaxSimilarityRation(word,lst)
+        if(lst):
+            y = getMaxSimilarityRation(word,lst)
 
-        print("this word does not exist\n")
-        print("Do you mean: "+ y +" ?")
-        if isTheOne(input("[Yes / No]\n")):
-            print(data[y])
+            print("this word does not exist\n")
+            print("Do you mean: "+ y +" ?")
+            if isTheOne(input("[Yes / No]\n")):
+                print(data[y])
+        else:
+            print("there is no such a word, please double check it ;)")
 
 
 get_definition()
