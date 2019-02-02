@@ -12,7 +12,7 @@ def getInput():
     return input('Enter word: ')
 
 def find_word(word, data):
-    if word in data:
+    if word in data.keys():
         return True
     return False
 
