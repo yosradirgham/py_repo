@@ -36,9 +36,14 @@ def getMaxSimilarityRation(word,lst):
 
 def isTheOne(userInput):
     userInput = userInput.lower()
-    if userInput == "yes":
+    if userInput == "yes" or userInput == "y":
         return True
     return False
+
+
+def printDefinition(arr):
+    for i in range(len(arr)):
+        print("%d. %s\n"%(i+1, arr[i]))
 
 
 def get_definition():
@@ -51,16 +56,19 @@ def get_definition():
     x = find_word(word, data)
 
     if x == True:
-        print(data[word])
+        printDefinition(data[word])
+
     else:
         lst = findSimilarWord(word, data)
         if(lst):
             y = getMaxSimilarityRation(word,lst)
 
-            print("this word does not exist\n")
-            print("Do you mean: "+ y +" ?")
+            print("this word does not exist\nDo you mean: %s ?"%y)
+
             if isTheOne(input("[Yes / No]\n")):
-                print(data[y])
+                printDefinition(data[y])
+            else:
+                print("there is no such a word, please double check it ;)")
         else:
             print("there is no such a word, please double check it ;)")
 
