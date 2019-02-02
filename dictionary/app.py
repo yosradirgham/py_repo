@@ -7,14 +7,14 @@ def get_json():
         return json.loads(data_file.read())
 
 
+def getInput():
+    print("\n____Dictionary____\n")
+    return input('Enter word: ')
+
 def find_word(word, data):
     if word in data:
         return True
     return False
-
-
-def similarity(str1, str2):
-    return SequenceMatcher(None, str1, str2).ratio()
 
 
 def findSimilarWord(word, data):
@@ -45,32 +45,29 @@ def printDefinition(arr):
     for i in range(len(arr)):
         print("%d. %s\n"%(i+1, arr[i]))
 
-
-def get_definition():
-    data = get_json()
-
-    print("\n____Dictionary____\n")
-    word = input('Enter word: ')
-    word = word.lower()
-
+#case : if the user enters Pariis
+def get_definition(word, data):
     x = find_word(word, data)
-
     if x == True:
         printDefinition(data[word])
-
     else:
-        lst = findSimilarWord(word, data)
-        if(lst):
-            y = getMaxSimilarityRation(word,lst)
-
-            print("this word does not exist\nDo you mean: %s ?"%y)
-
-            if isTheOne(input("[Yes / No]\n")):
-                printDefinition(data[y])
+        word = word.lower()
+        x = find_word(word, data)
+        if x == True:
+            printDefinition(data[word])
+        else:
+            lst = findSimilarWord(word, data)
+            if(lst):
+                y = getMaxSimilarityRation(word,lst)
+                print("this word does not exist\nDo you mean: %s ?"%y)
+                if isTheOne(input("[Yes / No]\n")):
+                    printDefinition(data[y])
+                else:
+                    print("there is no such a word, please double check it ;)")
             else:
                 print("there is no such a word, please double check it ;)")
-        else:
-            print("there is no such a word, please double check it ;)")
 
 
-get_definition()
+data = get_json()
+word = getInput()
+get_definition(word, data)
