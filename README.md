@@ -10,6 +10,7 @@ websites_blocker_app:
 ---------------------
 To run the script in the background,run :
   sudo crontab -e
-then add:
+
+Then add:
   @reboot /Users/yosra/Desktop/git/py_repo/websites_blocker_app/app.py
   
